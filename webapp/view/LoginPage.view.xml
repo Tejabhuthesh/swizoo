@@ -1,0 +1,81 @@
+<mvc:View controllerName="idfood.swizoo.controller.LoginPage"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    <Page class="LoginPageee" id="page" title="{i18n>title}">
+        <headerContent>
+            <Button class="homebutton" id="idonHome" press="onHome" type="Transparent" icon="sap-icon://home" />
+        </headerContent>
+
+        <content>
+            <!-- <FlexBox alignItems="Start" alignContent="Center"> -->
+            <VBox>
+                <IconTabBar expandable="true" selectedKey="placements">
+                    <items>
+                        <IconTabFilter key="placements" text="Registration" icon="sap-icon://account" visible="{=${Data2>/C} === 'X'}" class="sapMITBContentttt ">
+                            <VBox alignItems="Center" justifyContent="Center" class="vBoxRegistrationpage sapMITBContentReg">
+                                <f:SimpleForm editable="true" layout="ResponsiveGridLayout" emptySpanL="8" emptySpanM="8" title="Registration Portal" class="formbackgroundRegistaration">
+                                    <f:content>
+                                        <!-- <Toast id="demoToast" duration="2000"></Toast> -->
+                                        <Label text="CustomerID" required="true" />
+                                        <Input type="Number" id="idcustomerid" value="" valueState="{= ${Number}=== ''  ? 'Error' :'Success' }" />
+
+                                        <Label text="Name" />
+                                        <Input id="idname" valueLiveUpdate="true" liveChange="" />
+
+                                        <Label text="Address" />
+                                        <Input type="Text" id="idaddress" />
+
+                                        <Label text="Mobile Number" required="true" />
+                                        <!-- <Input type="Number" id="idm_number" maxLength="10" /> -->
+                                        <Input id="idm_number" type="Number" maxLength="10" change="handleChange" ariaLabelledBy="inputTextLabel" />
+
+                                        <Label text="Email Id" required="true" type="Email" />
+                                        <Input id="iduserid" />
+
+                                        <Label text="Password" required="true" />
+                                        <Input id="idpassword1" type="Password" />
+                                        <Button text="Register" type="Success" id="idrigester" press="onRigister" />
+
+
+                                    </f:content>
+                                </f:SimpleForm>
+                            </VBox>
+                            <HBox alignItems="Center" justifyContent="Center">
+                                <Label text="You Have Already Account." class="lableReg"/>
+                                <Link text="LoginIn" class="linkRegSignIn" press="onRegLogin"/>
+                            </HBox>
+
+
+                        </IconTabFilter>
+
+                        <IconTabFilter id="idLogin" key="aboutus" text="Login Portal" icon="sap-icon://visits" class="fdd" visible="{=${Data2>/C} === 'C'}">
+                            <!-- visible="{=${Data2>/C} === 'C' || ${Data2>/C} === 'X'}" -->
+                            <VBox alignItems="Center" justifyContent="Center" class="vBoxLoginpage sapMITBContentLog">
+                                <f:SimpleForm id="idloginportal" editable="true" layout="ResponsiveGridLayout" emptySpanL="8" emptySpanM="8" title="Login Portal" class="formbackgroundLogin">
+                                    <f:content>
+                                        <Label text="CustomerID" required="true"/>
+                                        <Input type="Text" id="idcustomer_id" />
+                                        <!-- valueState="{= ${Name}=== ''  ? 'Error' :'Success' }" -->
+                                        <Label text="Password" required="true"/>
+                                        <Input id="idpassword" />
+                                        <Button text="Login" type="Success" id="idlogin" press="onLogin" />
+                                    </f:content>
+                                </f:SimpleForm>
+
+
+                            </VBox>
+                            <HBox alignItems="Center" justifyContent="Center">
+                                <Label text="You Don't Have Account." class="lableReg"/>
+                                <Link text="Register" class="linkRegSignIn" press="onLogReg"/>
+                            </HBox>
+                        </IconTabFilter>
+                    </items>
+                </IconTabBar>
+            </VBox>
+            <!-- </FlexBox> -->
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,471 @@
+<mvc:View
+    controllerName="idfood.swizoo.controller.MainPage"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+>
+    <Page
+        id="page"
+        class="MainPageee"
+        title="{i18n>title}"
+        showNavButton="true"
+        navButtonPress="onNavBack"
+        showHeader="true"
+    >
+        <headerContent >
+          <Button
+            icon="sap-icon://customer" class="findfoodBtn btnnn"
+                    width="7rem"
+                    press="oncustomer" visible="{=${Data2>/CustomerID} === 'V' }" 
+                />
+                  <Button
+            icon="sap-icon://customer" class="findfoodBtn btnnn"
+                    width="7rem"
+                    press="onCustomerDatails" visible="{=${Data2>/CustomerID} !== 'V' }" 
+                />
+        </headerContent>
+        <content>
+            <Toolbar>
+                <Label
+                    text="SWIZOO"
+                    class="swizoo"
+                />
+                <ComboBox
+                
+                    width="20rem"
+                    placeholder="Select Your Restaurant"
+                    visible="true"
+                    id="SelectYourRestaurant"
+                    items="{
+			            	path: 'Data1>/results',
+				            sorter: { path: 'Name1' } }"
+                >
+                    <core:Item
+                        id="idcoreitem"
+                        text="{Data1>Name1}"
+                    />
+                </ComboBox>
+
+                <Button
+                    text="FIND FOOD"
+                   
+                    press="onFindFood"
+                />
+                <ToolbarSpacer />
+                <SearchField
+                    liveChange="onSearch"
+                    width="30%"
+                />
+               
+            </Toolbar>
+        </content>
+        <content>
+         <Label text="" id="idresturantnam" class="sapMLabell name"></Label>
+            <VBox alignItems="Center">
+                
+                <!-- <Image
+                    src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1002,h_600/v1678428358/portal/m/seo_web/dweb_header"
+                    class="sapMITBFilterIcon"
+                    width="70rem"
+                    height="20rem"
+                />
+            </VBox> -->
+             <Image
+                    src="https://restaurantindia.s3.ap-south-1.amazonaws.com/s3fs-public/content10523.jpg"
+                    class="sapMITBFilterIcon"
+                    width="70rem"
+                    height="20rem"
+                />
+            </VBox>
+            <HBox
+                alignItems="Center"
+                class="sapUiSmallMargin"
+            >
+                <Label
+                    text="Teja ,"
+                    id="id"
+                    class="labelWhatsonyourmind name"
+                />
+                <Label
+                    text="What's on your mind ?"
+                    id="idresturantname"
+                    class="labelWhatsonyourmind"
+                />
+            </HBox>
+        </content>
+        <content>
+            <FlexBox
+                justifyContent="Start"
+                alignItems="Start"
+                class="sidsa"
+                width="80%"
+            >
+                <VBox>
+                    <f:SimpleForm
+                        class="sapUiSmallMargin formbackgroundmyprofile"
+                        width="65rem"
+                    >
+                        <f:content>
+                            <!-- <ScrollContainer
+                            vertical="false"
+                            horizontal="true"
+                        >
+                            <HBox> -->
+                            <Carousel id="curdd"
+                                height="auto"
+                                width="100%"
+                                pages="2"
+                            >
+                                <customLayout>
+                                    <CarouselLayout visiblePagesCount="5" />
+                                </customLayout>
+                                <GenericTile
+                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029856/PC_Creative%20refresh/3D_bau/banners_new/Pizza"
+                                    press="onpiza"
+                                    header=""
+                                    subheader=""
+                                />
+                                <GenericTile
+                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029845/PC_Creative%20refresh/3D_bau/banners_new/Burger"
+                                    press="onPlayStore"
+                                    header=""
+                                    subheader=""
+                                />
+                                <GenericTile
+                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029860/PC_Creative%20refresh/3D_bau/banners_new/Samosas"
+                                    width=""
+                                    press="onPlayStore"
+                                />
+                                <GenericTile
+                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029848/PC_Creative%20refresh/3D_bau/banners_new/Chinese"
+                                    width=""
+                                    press="onPlayStore"
+                                />
+                                <GenericTile
+                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029860/PC_Creative%20refresh/3D_bau/banners_new/Sandwich"
+                                    width=""
+                                    press="onPlayStore"
+                                />
+                                <GenericTile
+                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029858/PC_Creative%20refresh/3D_bau/banners_new/Rolls"
+                                    width=""
+                                    press="onPlayStore"
+                                />
+                                <GenericTile
+                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1675667630/PC_Creative%20refresh/Desserts_2"
+                                    width=""
+                                    press="onPlayStore"
+                                />
+                                <GenericTile
+                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029844/PC_Creative%20refresh/3D_bau/banners_new/Lassi"
+                                    width=""
+                                    press="onPlayStore"
+                                />
+                                <GenericTile
+                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029855/PC_Creative%20refresh/3D_bau/banners_new/Poori"
+                                    width=""
+                                    press="onPlayStore"
+                                />
+                                <GenericTile
+                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029844/PC_Creative%20refresh/3D_bau/banners_new/Lassi"
+                                    width=""
+                                    press="onPlayStore"
+                                />
+                                <GenericTile
+                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/rng/md/carousel/production/fb304a49f0f1632a219e004e9545774e"
+                                    width=""
+                                    press="onPlayStore"
+                                />
+                                <GenericTile
+                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1675667625/PC_Creative%20refresh/Biryani_2"
+                                    width=""
+                                    press="onPlayStore"
+                                />
+                                <GenericTile
+                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029858/PC_Creative%20refresh/3D_bau/banners_new/Pure_Veg"
+                                    width=""
+                                    press="onPlayStore"
+                                />
+                            </Carousel>
+
+                            <!-- </HBox>
+                        </ScrollContainer> -->
+                        </f:content>
+                    </f:SimpleForm>
+                    <Label
+                        text="Top restaurant chains in Gurgaon"
+                        class="labelWhatsonyourmind name"
+                    />
+                    <f:SimpleForm
+                        class="sapUiSmallMargin formbackgroundmyprofile"
+                        width="65rem"
+                    >
+                        <f:content>
+                            <ScrollContainer
+                                vertical="false"
+                                horizontal="true"
+                            >
+                                <HBox>
+                                    <VBox>
+                                        <GenericTile
+                                            backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/08eee882fda81b68e5c36e3a5d89d8c0"
+                                            press="onPlayStore"
+                                            header=""
+                                            frameType="TwoByOne"
+                                            subheader=""
+                                        >
+                                            <TileContent
+                                                footer="50% OFF UPTO ₹100"
+                                            >
+                                                <NewsContent
+                                                    contentText=""
+                                                    subheader=""
+                                                />
+                                            </TileContent>
+                                        </GenericTile>
+
+                                        <Label
+                                            text="McDonald's"
+                                            class="name bJRtXU"
+                                        />
+
+                                        <HBox>
+                                            <Image
+                                                src="https://i.pinimg.com/236x/29/4d/5a/294d5a3b1d25e9709ceecfddacd88205.jpg"
+                                                width="25px"
+                                                class="star"
+                                            />
+                                            <!-- <Link icon="" id="c" /> -->
+                                            <!-- <Button text = "" type = "Transparent" icon="sap-icon://edit" /> -->
+
+                                            <Label
+                                                text="4.1"
+                                                design="Bold"
+                                                class="ratingpoints"
+                                            />
+                                        </HBox>
+                                        <Label
+                                            text="Burgers,Beverages,Cafe,Desserts"
+                                            design="Standard"
+                                            class="food "
+                                        />
+                                        <Label
+                                            text="GANDHINAGAR"
+                                            design="Bold"
+                                            class="street"
+                                        />
+                                    </VBox>
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/0bf19a82b109b40c2f5c56d00f071a33"
+                                        press="onPlayStore"
+                                        header=""
+                                        frameType="TwoByOne"
+                                        subheader=""
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/obtyqt35sq55t0owwixq"
+                                        press="onPlayStore"
+                                        header=""
+                                        frameType="TwoByOne"
+                                        subheader=""
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/d461cb7eac503656a2b4bb13e7c60b97"
+                                        press="onPlayStore"
+                                        header=""
+                                        frameType="TwoByOne"
+                                        subheader=""
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/02731f6bd73f982bc74a522edd9c1b01"
+                                        press="onPlayStore"
+                                        header=""
+                                        frameType="TwoByOne"
+                                        subheader=""
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/dusrpnmq696kud6ri5p5"
+                                        press="onPlayStore"
+                                        header=""
+                                        frameType="TwoByOne"
+                                        subheader=""
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/ebvhlm5cwapzxrqs6nkd"
+                                        press="onPlayStore"
+                                        header=""
+                                        frameType="TwoByOne"
+                                        subheader=""
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/42110cd5216d1ebad900b13f5287bd9b"
+                                        press="onPlayStore"
+                                        header=""
+                                        frameType="TwoByOne"
+                                        subheader=""
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/2beebd3688e63e027ee8a11c1c8a72c8"
+                                        press="onPlayStore"
+                                        header=""
+                                        frameType="TwoByOne"
+                                        subheader=""
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/e33e1d3ba7d6b2bb0d45e1001b731fcf"
+                                        press="onPlayStore"
+                                        header=""
+                                        frameType="TwoByOne"
+                                        subheader=""
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/ji7etlhddnvtocaoes1n"
+                                        press="onPlayStore"
+                                        header=""
+                                        frameType="TwoByOne"
+                                        subheader=""
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/mxc0204gqh6vps9asyw1"
+                                        press="onPlayStore"
+                                        header=""
+                                        frameType="TwoByOne"
+                                        subheader=""
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/af8216b15abde417bb0e1d8fc44fb877"
+                                        press="onPlayStore"
+                                        header=""
+                                        frameType="TwoByOne"
+                                        subheader=""
+                                    />
+                                </HBox>
+                            </ScrollContainer>
+                        </f:content>
+                    </f:SimpleForm>
+                    <Label
+                        text="Restaurants with online food delivery in Gurgaon"
+                        class="labelWhatsonyourmind name"
+                    />
+
+                    <f:SimpleForm
+                        class="sapUiSmallMargin formbackgroundmyprofile"
+                        width="65rem" 
+                    >
+                        <f:content>
+                           <HBox >
+                           <Button id="filter" text="Filter" icon="sap-icon://customize"  press="onMainPageFilters"/>
+                           <Button id="Sort" text="Sort By" icon="sap-icon://sort" class="sortBtn" press="onsort"/>
+                           <Button id="Sort1" text="Fast Delivery " class="sortBtn"/>
+                           <Button id="rating" text="Ratings 4.0+" class="sortBtn"/>
+                           <Button id="pureveg" text="Pure Veg" class="sortBtn"/>
+                            <Button id="Offers" text="Offers" class="sortBtn"/>
+                             <Button id="300to600" text="Rs.300 - Rs.600" class="sortBtn"/>
+                              <Button id="L300" text="Less than Rs.300" class="sortBtn"/>
+                           </HBox>
+                        </f:content>
+                    </f:SimpleForm>
+
+                    <f:SimpleForm
+                        class="sapUiSmallMargin formbackgroundmyprofile"
+                        width="65rem"
+                    >
+                        <f:content>
+                            <ScrollContainer
+                                vertical="false"
+                                horizontal="true"
+                            >
+                                <HBox>
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029856/PC_Creative%20refresh/3D_bau/banners_new/Pizza"
+                                        press="onPlayStore"
+                                        header=""
+                                        subheader=""
+                                        class="zoom"
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029845/PC_Creative%20refresh/3D_bau/banners_new/Burger"
+                                        press="onPlayStore"
+                                        header=""
+                                        subheader=""
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029860/PC_Creative%20refresh/3D_bau/banners_new/Samosas"
+                                        width=""
+                                        press="onPlayStore"
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029848/PC_Creative%20refresh/3D_bau/banners_new/Chinese"
+                                        width=""
+                                        press="onPlayStore"
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029860/PC_Creative%20refresh/3D_bau/banners_new/Sandwich"
+                                        width=""
+                                        press="onPlayStore"
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029858/PC_Creative%20refresh/3D_bau/banners_new/Rolls"
+                                        width=""
+                                        press="onPlayStore"
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1675667630/PC_Creative%20refresh/Desserts_2"
+                                        width=""
+                                        press="onPlayStore"
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029844/PC_Creative%20refresh/3D_bau/banners_new/Lassi"
+                                        width=""
+                                        press="onPlayStore"
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029855/PC_Creative%20refresh/3D_bau/banners_new/Poori"
+                                        width=""
+                                        press="onPlayStore"
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029844/PC_Creative%20refresh/3D_bau/banners_new/Lassi"
+                                        width=""
+                                        press="onPlayStore"
+                                    />
+                                    <GenericTile
+                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/rng/md/carousel/production/fb304a49f0f1632a219e004e9545774e"
+                                        width=""
+                                        press="onPlayStore"
+                                    />
+                                </HBox>
+                            </ScrollContainer>
+                        </f:content>
+                    </f:SimpleForm>
+                </VBox>
+            </FlexBox>
+        </content>
+        <!-- <content> -->
+        <!-- <FlexBox
+                justifyContent="Start"
+                alignItems="Start"
+                class="sidsa"
+                width="80%"
+            >
+                <f:SimpleForm
+                    class="sapUiSmallMargin formbackgroundmyprofile"
+                    width="65rem"
+                >
+                    <f:content>
+                        <Label
+                            text="Restaurants with online food delivery in Bangalore  "
+                        />
+                    </f:content>
+                </f:SimpleForm>
+            </FlexBox> -->
+        <!-- <Label
+                            text="Restaurants with online food delivery in Bangalore  "
+                        />
+        </content> -->
+        <!-- <Label text="" id="idresturantname" class="sapMLabell"></Label> -->
+    </Page>
+</mvc:View>

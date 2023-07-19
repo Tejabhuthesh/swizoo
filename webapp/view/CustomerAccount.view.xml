@@ -1,0 +1,85 @@
+<mvc:View xmlns:internal="sap.landvisz.internal"
+    xmlns:dnd="sap.ui.core.dnd"
+    xmlns:appfinder="sap.ushell.ui.appfinder" controllerName="idfood.swizoo.controller.CustomerAccount"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+
+    <App id="idCustomerACApp">
+
+
+        <SplitContainer id="SplitContDemo">
+            <detailPages>
+                <Page id="page">
+                    <IconTabBar expandable="false" id="ibar">
+
+                        <items>
+                            <IconTabFilter id="ifi" text="{CDetails>/0/Name1}" icon="sap-icon://customer">
+                                <!-- <f:SimpleForm editable="true" class="formbackgroundpassword" layout="ColumnLayout" title="Address">
+                                    <f:content>
+                                        <Label text="CustomerID" />
+                                        <Text text="{CDetails>/0/Kunnr}" />
+                                        <Label text="Name" />
+                                        <Text text="{CDetails>/0/Name1}" />
+                                        <Label text="Address" />
+                                        <Text text="{CDetails>/0/SmtpAddr}" />
+                                        <Label text="Mobile Number" />
+                                        <Text text="{CDetails>/0/Telf1}" />
+                                        <Label text="UserID" />
+                                        <Text text="{CDetails>/0/AppUsrid}" />
+                                        <Label text="Password" />
+                                        <Text text="{CDetails>/0/Password}" />
+                                    </f:content>
+                                </f:SimpleForm> -->
+                            </IconTabFilter>
+                            <IconTabFilter id="id1" text="{i18n>Name}" icon="sap-icon://customer">
+                                <Button text="click" press="onpreees"></Button>
+                            </IconTabFilter>
+                        </items>
+                    </IconTabBar>
+                </Page>
+                <Page id="Feedback" showNavButton="true" navButtonPress="onPressMasterBack" title=" Feedback deatails" />
+            </detailPages>
+            <masterPages>
+                <Page id="page1" class="sapUiSmallMargin" title="Your Account" showNavButton="true" navButtonPress="onNavBack">
+                    <content>
+                        <VBox alignItems="Center">
+                            <!-- <Image id="wow" width="100px" height="100px" class="imageProfile" /> -->
+                        </VBox>
+                        <VBox id="wow" class="imageProfile">
+                            <VBox id="canvasContainer"></VBox>
+                        </VBox>
+                        <Button icon="sap-icon://camera" id="photocapture" type="Attention" text="Take a Pic!" press="takePhoto" />
+
+                        <VBox alignItems="Center" class="CDVBox">
+
+
+                            <Button text="Orders" icon="" class="CDLink" press="orders" />
+                            <Button text="Favorites" icon="sap-icon://heart" class="CDLink" />
+                            <Button text="Payments" icon="sap-icon://monitor-payments" class="CDLink" />
+                            <Button text="Address" icon="sap-icon://addresses" class="CDLink" />
+                            <Button text="Logout" icon="sap-icon://log" class="CDLink" press="onLogOut" />
+                        </VBox>
+                    </content>
+                </Page>
+                <Page id="idProfile" title="Profile" showNavButton="true" navButtonPress="onNavBack" visible="true">
+                    <content>
+                        <ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+                            <List width="20rem" id="idC" items="{
+			                       path: 'CDetails>/'
+			                        
+	                          	}">
+                                <items>
+                                    <ObjectListItem title="{CDetails>Name1}" number="{CDetails>Telf1}" numberState="{= ${CDetails>AppUsrid} > 13000 ?'Warning' : 'Success' }" intro="{CDetails>SmtpAddr}" id="fff" press="onListPress" />
+                                </items>
+                            </List>
+                        </ScrollContainer>
+                    </content>
+                </Page>
+            </masterPages>
+        </SplitContainer>
+        <!-- </ScrollContainer> -->
+    </App>
+</mvc:View>

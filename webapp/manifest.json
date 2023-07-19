@@ -1,0 +1,179 @@
+{
+    "_version": "1.49.0",
+    "sap.app": {
+        "id": "idfood.swizoo",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.9.6",
+            "toolsId": "fc78127e-77c6-4e0f-a33c-dfc5c894a1cb"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZCUSTOMAPP_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZPLANTDETAILS_SRV1": {
+                "uri": "/sap/opu/odata/sap/ZPLANTDETAILS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/ZPLANTDETAILS_SRV1/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "idfood-swizoo-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "zsizoo_001",
+                    "action": "display",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": ""
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.114.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "idfood.swizoo.i18n.i18n"
+                }
+            },
+            "ZCUSTOMAPP": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            },
+            "ZPLANTDETAILS": {
+                "dataSource": "ZPLANTDETAILS_SRV1",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "idfood.swizoo.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "view": "HomePage",
+                    "name": "HomePage",
+                    "pattern": "",
+                    "target": [
+                        "TargetHomePage"
+                    ]
+                },
+                {
+                    "name": "LoginPage",
+                    "view": "LoginPage",
+                    "pattern": "LoginPage/{flag}",
+                    "targetAggregation": "pages",
+                    "controlId": "app"
+                },
+                {
+                    "name": "MainPage",
+                    "view": "MainPage",
+                    "pattern": "MainPage/{CustomerID}/{Password}/{city}",
+                    "targetAggregation": "pages",
+                    "controlId": "app"
+                },
+                {
+                    "name": "CustomerAccount",
+                    "view": "CustomerAccount",
+                    "pattern": "CustomerAccount/{CustomerID}/{Password}",
+                    "targetAggregation": "pages",
+                    "controlId": "app"
+                }
+            ],
+            "targets": {
+                "TargetHomePage": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "HomePage",
+                    "viewName": "HomePage"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "idfood.swizoo.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    }
+}

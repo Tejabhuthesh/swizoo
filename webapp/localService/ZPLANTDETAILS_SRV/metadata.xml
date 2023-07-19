@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZCUSTOMAPP_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <EntityType Name="Customdetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Kunnr"/>
+                </Key>
+                <Property Name="Kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Customer"/>
+                <Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Name"/>
+                <Property Name="SmtpAddr" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="E-Mail Address"/>
+                <Property Name="Telf1" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="Telephone 1"/>
+                <Property Name="AppUsrid" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char"/>
+                <Property Name="Password" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char"/>
+            </EntityType>
+            <EntityContainer Name="ZCUSTOMAPP_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="CustomdetailsSet" EntityType="ZCUSTOMAPP_SRV.Customdetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="https://ikjdcdevcha01.dangote-group.com:50000/sap/opu/odata/sap/ZCUSTOMAPP_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://ikjdcdevcha01.dangote-group.com:50000/sap/opu/odata/sap/ZCUSTOMAPP_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

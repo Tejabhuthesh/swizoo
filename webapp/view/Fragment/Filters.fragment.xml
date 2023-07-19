@@ -1,0 +1,65 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:tnt="sap.tnt"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+    <Dialog
+        class="dia sapMITBContent1"
+        id="idFiltersDialog"
+        
+        title="Filter"
+    >
+        <IconTabBar
+            class="sapMBtnInner dialog1"
+            expandable="false" 
+        >
+            <items  >
+                <IconTabFilter
+                  class="DialogIconTabBarLength "
+                    key="placements"
+                    text="Price"
+                >
+                    <VBox
+                        alignItems="Center"
+                        justifyContent="Center"
+                         
+                    >
+                        <RadioButtonGroup
+                            id="rbg4"
+                            valueState="Warning"
+                        >
+                            <RadioButton
+                                id="RB4-1"
+                                text="Option 1"
+                            />
+                            <RadioButton
+                                id="RB4-2"
+                                text="Option 2"
+                            />
+                        </RadioButtonGroup>
+                    </VBox>
+                </IconTabFilter>
+
+                <IconTabFilter
+                    id="idLogin"
+                    class="sapMBtnInner"
+                    key="aboutus"
+                    text="Ratings"
+                />
+            </items>
+        </IconTabBar>
+
+        <!-- </content> -->
+        <endButton>
+            <Button
+                id="closeBtne"
+                type="Transparent"
+                text="Cancel"
+                press="onFiltersDialogClose"
+                icon="sap-icon://decline"
+            />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
