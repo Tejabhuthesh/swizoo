@@ -1,33 +1,32 @@
 
 sap.ui.define([
-    "sap/ui/core/mvc/Controller", "sap/m/MessageBox", "sap/m/MessageToast"
+    "./BaseController",
+    "sap/m/library",
+    "sap/m/MessageBox",
+    "sap/m/MessageToast"
+
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, MessageBox, MessageToast) {
+    function (BaseController, library, MessageBox, MessageToast) {
         "use strict";
 
-        return Controller.extend("idfood.swizoo.controller.HomePage", {
+        return BaseController.extend("idfood.swizoo.controller.HomePage", {
             onInit: function () {
-                var that = this;
                 debugger;
-                // var oModel = new sap.ui.model.odata.ODataModel("/sap/opu/odata/sap/ZPLANTDETAILS_SRV/");
-                var oModel = that.getOwnerComponent().getModel("ZPLANTDETAILS");
+                var comboid = this.getView().byId("SelectYourRestaurant");
+                    comboid.mBindingInfos.items .length = 341;
+                var oModel = this.getOwnerComponent().getModel("ZPLANTDETAILS");
                 oModel.read("/InputPlantInfoSet", {
                     success: function (odata) {
-                        // debugger;
                         var oModel1 = new sap.ui.model.json.JSONModel();
                         oModel1.setData(odata);
-                        that.getView().setModel(oModel1, "Data1");
-                        // alert("Success");
-                        // MessageBox.success(oModel1);
-
-                    },
+                        this.getView().setModel(oModel1, "Data2");
+                    }.bind(this),
                     error: function (oError) {
                         sap.ui.core.BusyIndicator.hide();
-                        var message = error;
-                        var msg = $(error.response.body).find('message').first().text();
+                        var msg = $(oError.response.body).find('message').first().text();
                         var action = "OK";
                         new sap.m.MessageBox.error(msg, {
 
@@ -39,31 +38,27 @@ sap.ui.define([
                         });
                     }
                 })
-               
+
 
             },
-            // onNavBack: function () {
-            //     var loRouter = sap.ui.core.UIComponent.getRouterFor(this);
-            //     loRouter.navTo("LoginPage", { key1: "ram" });
 
-            // },
-            onFindFood: function (oEvent) {
-                var city=this.getView().byId("SelectYourRestaurant").getValue();
-                if(city ===""){
 
-                }else{
+            onFindFood: function () {
+                debugger;
+                var city = this.getView().byId("SelectYourRestaurant").getValue();
+                if (city === "") {
+
+                } else {
                     var loRouter = sap.ui.core.UIComponent.getRouterFor(this)
                     loRouter.navTo("MainPage", { CustomerID: "V", Password: "V", city: city });
 
                 }
             },
-            onHomeLogin: function (evt) {
-                var loRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                loRouter.navTo("LoginPage", { flag: "C" });
+            onHomeLogin: function () {
+                this.onRegLogin();
             },
-            onHomesign: function (evt) {
-                var loRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                loRouter.navTo("LoginPage", { flag: "X" });
+            onHomesign: function () {
+                this.onLogReg();
             },
 
             onPlayStore: function () {

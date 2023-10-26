@@ -10,7 +10,6 @@
         </headerContent>
 
         <content>
-            <!-- <FlexBox alignItems="Start" alignContent="Center"> -->
             <VBox>
                 <IconTabBar expandable="true" selectedKey="placements">
                     <items>
@@ -32,11 +31,12 @@
                                         <!-- <Input type="Number" id="idm_number" maxLength="10" /> -->
                                         <Input id="idm_number" type="Number" maxLength="10" change="handleChange" ariaLabelledBy="inputTextLabel" />
 
-                                        <Label text="Email Id" required="true" type="Email" />
-                                        <Input id="iduserid" />
+                                        <Label text="Email Id" required="true" />
+                                        <Input id="iduserid" type="Email"/>
 
                                         <Label text="Password" required="true" />
-                                        <Input id="idpassword1" type="Password" />
+
+                                        <Input id="idpassword1" type="Password" showValueHelp="true" valueHelpIconSrc="sap-icon://hide" valueHelpRequest="onEyePassword" />
                                         <Button text="Register" type="Success" id="idrigester" press="onRigister" />
 
 
@@ -60,7 +60,8 @@
                                         <Input type="Text" id="idcustomer_id" />
                                         <!-- valueState="{= ${Name}=== ''  ? 'Error' :'Success' }" -->
                                         <Label text="Password" required="true"/>
-                                        <Input id="idpassword" />
+                                        <!-- <Input id="idpassword" type="Password" icon="sap-icon://show"/> -->
+                                        <Input id="idpassword" type="Password" showValueHelp="true" valueHelpIconSrc="sap-icon://hide" valueHelpRequest="onEyePassword" />
                                         <Button text="Login" type="Success" id="idlogin" press="onLogin" />
                                     </f:content>
                                 </f:SimpleForm>
@@ -75,7 +76,7 @@
                     </items>
                 </IconTabBar>
             </VBox>
-            <!-- </FlexBox> -->
+
         </content>
     </Page>
 </mvc:View>

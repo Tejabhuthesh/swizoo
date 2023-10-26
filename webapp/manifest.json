@@ -15,6 +15,7 @@
             "version": "1.9.6",
             "toolsId": "fc78127e-77c6-4e0f-a33c-dfc5c894a1cb"
         },
+       
         "dataSources": {
             "mainService": {
                 "uri": "/sap/opu/odata/sap/ZCUSTOMAPP_SRV/",
@@ -33,6 +34,10 @@
                     "localUri": "localService/ZPLANTDETAILS_SRV1/metadata.xml",
                     "odataVersion": "2.0"
                 }
+            },
+              "FoodItem": {
+                "uri": "model/FoodItem.json",
+                "type": "JSON"
             }
         },
         "crossNavigation": {
@@ -68,7 +73,7 @@
         }
     },
     "sap.ui5": {
-        "flexEnabled": true,
+        "flexEnabled": false,
         "dependencies": {
             "minUI5Version": "1.114.0",
             "libs": {
@@ -109,7 +114,24 @@
                         "sap-value-list": "none"
                     }
                 }
+            },
+            "ZPLANTDETAILS3": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "/sap/opu/odata/sap/ZPLANTDETAILS_SRV/"
+                
+            },
+             "FoodItem": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "FoodItem",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay"
+                }
+            },
+            "Cart":{
+                "type": "sap.ui.model.json.JSONModel"
             }
+            
         },
         "resources": {
             "css": [
@@ -120,7 +142,7 @@
         },
         "routing": {
             "config": {
-                "routerClass": "sap.m.routing.Router",
+                "routerClass": "sap.f.routing.Router",
                 "viewType": "XML",
                 "async": true,
                 "viewPath": "idfood.swizoo.view",
@@ -132,48 +154,122 @@
                 {
                     "view": "HomePage",
                     "name": "HomePage",
+                    "targetAggregation": "pages",
+                    "controlId": "app",
                     "pattern": "",
                     "target": [
                         "TargetHomePage"
+                       
                     ]
                 },
                 {
                     "name": "LoginPage",
                     "view": "LoginPage",
-                    "pattern": "LoginPage/{flag}",
+                    "pattern": "LoginPage/{flag}" ,
                     "targetAggregation": "pages",
-                    "controlId": "app"
+                    "controlId": "app",
+                    "target": [
+                        "TargetLogin"
+                    
+                    ]
+                   
+                },
+                
+                {
+                    "name": "HomeCart",
+                    "view": "HomeCart",
+                    "pattern": "HomeCart" ,
+                    "targetAggregation": "pages",
+                    "controlId": "app",
+                    "target": [
+                        "TargetHomeCart"
+                    
+                    ]
+                   
                 },
                 {
                     "name": "MainPage",
                     "view": "MainPage",
                     "pattern": "MainPage/{CustomerID}/{Password}/{city}",
-                    "targetAggregation": "pages",
-                    "controlId": "app"
+                    "target": [
+                        "TargetIteams",
+                        "TargetIteams1"
+                    
+                    ]
+                },
+                {
+                    "name": "Iteams",
+                    "view": "Iteams",
+                    "pattern": ":layout:",
+                    "target": [
+                        "TargetIteams1",
+                        "TargetIteams"
+                       
+                    ]
                 },
                 {
                     "name": "CustomerAccount",
                     "view": "CustomerAccount",
                     "pattern": "CustomerAccount/{CustomerID}/{Password}",
                     "targetAggregation": "pages",
-                    "controlId": "app"
+                    "controlId": "app",
+                    "target": [
+                        "TargetCustomerAccount"
+                    ]
                 }
             ],
             "targets": {
                 "TargetHomePage": {
                     "viewType": "XML",
                     "transition": "slide",
-                    "clearControlAggregation": false,
                     "viewId": "HomePage",
-                    "viewName": "HomePage"
-                }
-            }
+                    "viewName": "HomePage",
+                    "controlAggregation": "beginColumnPages",
+                    "clearControlAggregation": false
+                },
+                "TargetLogin": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "viewId": "LoginPage",
+                    "viewName": "LoginPage",
+                    "controlAggregation": "beginColumnPages",
+                    "clearControlAggregation": false
+                },
+                "TargetHomeCart": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "viewId": "HomeCart",
+                    "viewName": "HomeCart",
+                    "controlAggregation": "beginColumnPages",
+                    "clearControlAggregation": false
+                },
+                
+                "TargetCustomerAccount": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "viewId": "CustomerAccount",
+                    "viewName": "CustomerAccount",
+                    "controlAggregation": "beginColumnPages",
+                    "clearControlAggregation": false
+                },
+                "TargetIteams": {
+                  "controlAggregation": "beginColumnPages",
+                  "viewName": "MainPage"
+                },
+                "TargetIteams1": {
+                    "controlAggregation": "midColumnPages",
+                    "viewName": "Iteams"
+                  }
+              }
         },
         "rootView": {
             "viewName": "idfood.swizoo.view.App",
             "type": "XML",
             "async": true,
             "id": "App"
-        }
+        },
+        	"resourceRoots": {
+			"illustrations": "custom_illustrations"
+		}
     }
 }

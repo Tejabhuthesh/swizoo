@@ -5,26 +5,27 @@
     xmlns:tnt="sap.tnt"
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 >
-    <Dialog
-        class="dia sapMITBContent1"
+
+    <!-- <Dialog
+        class="dia "
         id="idFiltersDialog"
         
         title="Filter"
     >
         <IconTabBar
-            class="sapMBtnInner dialog1"
+            class="sapMBtnInner dialog1 sapMITBContent1"
             expandable="false" 
         >
             <items  >
                 <IconTabFilter
-                  class="DialogIconTabBarLength "
+                  class="DialogIconTabBarLength sapMITBContent1"
                     key="placements"
                     text="Price"
                 >
                     <VBox
                         alignItems="Center"
                         justifyContent="Center"
-                         
+                           class="sapMITBContent1"
                     >
                         <RadioButtonGroup
                             id="rbg4"
@@ -51,7 +52,7 @@
             </items>
         </IconTabBar>
 
-        <!-- </content> -->
+       
         <endButton>
             <Button
                 id="closeBtne"
@@ -61,5 +62,5 @@
                 icon="sap-icon://decline"
             />
         </endButton>
-    </Dialog>
+    </Dialog> -->
 </core:FragmentDefinition>

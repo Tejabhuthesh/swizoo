@@ -1,11 +1,4 @@
-<mvc:View xmlns:internal="sap.landvisz.internal"
-    xmlns:dnd="sap.ui.core.dnd"
-    xmlns:appfinder="sap.ushell.ui.appfinder" controllerName="idfood.swizoo.controller.CustomerAccount"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns:l="sap.ui.layout"
-    xmlns="sap.m"
-    xmlns:core="sap.ui.core"
-    xmlns:f="sap.ui.layout.form">
+<!-- <mvc:View xmlns:internal="sap.landvisz.internal" xmlns:dnd="sap.ui.core.dnd" xmlns:appfinder="sap.ushell.ui.appfinder" controllerName="idfood.swizoo.controller.CustomerAccount" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:tnt="sap.tnt" class="side-navigation-demo">
 
     <App id="idCustomerACApp">
 
@@ -17,7 +10,7 @@
 
                         <items>
                             <IconTabFilter id="ifi" text="{CDetails>/0/Name1}" icon="sap-icon://customer">
-                                <!-- <f:SimpleForm editable="true" class="formbackgroundpassword" layout="ColumnLayout" title="Address">
+                                <f:SimpleForm editable="true" class="formbackgroundpassword" layout="ColumnLayout" title="Address">
                                     <f:content>
                                         <Label text="CustomerID" />
                                         <Text text="{CDetails>/0/Kunnr}" />
@@ -32,10 +25,11 @@
                                         <Label text="Password" />
                                         <Text text="{CDetails>/0/Password}" />
                                     </f:content>
-                                </f:SimpleForm> -->
+                                </f:SimpleForm>
                             </IconTabFilter>
                             <IconTabFilter id="id1" text="{i18n>Name}" icon="sap-icon://customer">
                                 <Button text="click" press="onpreees"></Button>
+                               
                             </IconTabFilter>
                         </items>
                     </IconTabBar>
@@ -43,10 +37,215 @@
                 <Page id="Feedback" showNavButton="true" navButtonPress="onPressMasterBack" title=" Feedback deatails" />
             </detailPages>
             <masterPages>
+               <Page id="page1" class="sapUiSmallMargin" title="Your Account" showNavButton="true" navButtonPress="onNavBack"> 
+
+                  
+                        <content> 
+                <VBox alignItems="Center">
+                               
+                            </VBox>
+                            <VBox id="wow" class="imageProfile">
+                                <VBox id="canvasContainer"></VBox>
+                            </VBox>
+                            <Button icon="sap-icon://camera" id="photocapture" type="Attention" text="Take a Pic!" press="takePhoto" />
+
+                            <VBox alignItems="Center" class="CDVBox">
+
+
+                                <Button text="Orders" icon="" class="CDLink" press="orders" />
+                                <Button text="Favorites" icon="sap-icon://heart" class="CDLink" />
+                                <Button text="Payments" icon="sap-icon://monitor-payments" class="CDLink" />
+                                <Button text="Address" icon="sap-icon://addresses" class="CDLink" />
+                                <Button text="Logout" icon="sap-icon://log" class="CDLink" press="onLogOut" />
+                            </VBox>
+ <Button text="Toggle Collapse/Expand" icon="sap-icon://menu2" press=".onCollapseExpandPress" />
+                <tnt:SideNavigation id="sideNavigation" selectedKey="subItem3">
+                    <tnt:NavigationList>
+                        <tnt:NavigationListItem text="Item 1" icon="sap-icon://employee">
+                            <tnt:NavigationListItem text="Sub Item 1" />
+                            <tnt:NavigationListItem text="Sub Item 2" />
+                            <tnt:NavigationListItem text="Sub Item 3" id="subItem3" key="subItem3" />
+                            <tnt:NavigationListItem text="Sub Item 4" />
+                        </tnt:NavigationListItem>
+                        <tnt:NavigationListItem text="Item 2" icon="sap-icon://building">
+                            <tnt:NavigationListItem text="Sub Item 1" />
+                            <tnt:NavigationListItem text="Sub Item 2" />
+                            <tnt:NavigationListItem text="Sub Item 3" />
+                            <tnt:NavigationListItem text="Sub Item 4" />
+                        </tnt:NavigationListItem>
+                    </tnt:NavigationList>
+                    <tnt:fixedItem>
+                        <tnt:NavigationList>
+                            <tnt:NavigationListItem text="Item 1" icon="sap-icon://employee" />
+                            <tnt:NavigationListItem text="Item 2" icon="sap-icon://building" />
+                            <tnt:NavigationListItem text="Item 3" icon="sap-icon://card" />
+                        </tnt:NavigationList>
+                    </tnt:fixedItem>
+                </tnt:SideNavigation>
+                 </content>
+
+                </Page> 
+                <Page id="idProfile" title="Profile" showNavButton="true" navButtonPress="onNavBack" visible="true">
+                    <content>
+                        <ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+                            <List width="20rem" id="idC" items="{
+			                       path: 'CDetails>/'
+			                        
+	                          	}">
+                                <items>
+                                    <ObjectListItem title="{CDetails>Name1}" number="{CDetails>Telf1}" numberState="{= ${CDetails>AppUsrid} > 13000 ?'Warning' : 'Success' }" intro="{CDetails>SmtpAddr}" id="fff" press="onListPress" />
+                                </items>
+                            </List>
+                        </ScrollContainer>
+                    </content>
+                </Page>
+            </masterPages>
+        </SplitContainer>
+
+    </App>
+</mvc:View> -->
+<mvc:View xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:tnt="sap.tnt"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form" controllerName="idfood.swizoo.controller.CustomerAccount" height="100%">
+    <!-- <ScrollContainer vertical="true" height="100%">
+		 -->
+    <!-- <tnt:SideNavigation id="sideNavigation" selectedKey="subItem3">
+                    <tnt:NavigationList>
+                        <tnt:NavigationListItem text="Item 1" icon="sap-icon://employee">
+                            <tnt:NavigationListItem text="Sub Item 1" />
+                            <tnt:NavigationListItem text="Sub Item 2" />
+                            <tnt:NavigationListItem text="Sub Item 3" id="subItem3" key="subItem3" />
+                            <tnt:NavigationListItem text="Sub Item 4" />
+                        </tnt:NavigationListItem>
+                        <tnt:NavigationListItem text="Item 2" icon="sap-icon://building">
+                            <tnt:NavigationListItem text="Sub Item 1" />
+                            <tnt:NavigationListItem text="Sub Item 2" />
+                            <tnt:NavigationListItem text="Sub Item 3" />
+                            <tnt:NavigationListItem text="Sub Item 4" />
+                        </tnt:NavigationListItem>
+                    </tnt:NavigationList>
+                    <tnt:fixedItem>
+                        <tnt:NavigationList>
+                            <tnt:NavigationListItem text="Item 1" icon="sap-icon://employee" />
+                            <tnt:NavigationListItem text="Item 2" icon="sap-icon://building" />
+                            <tnt:NavigationListItem text="Item 3" icon="sap-icon://card" />
+                        </tnt:NavigationList>
+                    </tnt:fixedItem>
+                </tnt:SideNavigation> -->
+    <App >
+
+        <SplitContainer id="SplitContDemo">
+
+            <detailPages>
+                <Page id="page">
+                    <headerContent >
+                        <tnt:ToolHeader id="shellLikeToolHeader" class="sapUiTinyMargin" width="auto">
+                            <Button id="idMenu2" icon="sap-icon://menu2" type="Emphasized" tooltip="Menu" press=".onMasterHide">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData priority="NeverOverflow"/>
+                                </layoutData>
+
+                            </Button>
+                            <Image width="11rem" src="data:image/png;base64,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" decorative="false" press="onLogoPressed" tooltip="SAP Logo">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData priority="NeverOverflow"/>
+                                </layoutData>
+                            </Image>
+                            <Title text="Prоduct Name" wrapping="false" id="productName">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData priority="Disappear"/>
+                                </layoutData>
+                            </Title>
+                            <Text text="Second title" wrapping="false" id="secondTitle">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData priority="Disappear"/>
+                                </layoutData>
+                            </Text>
+                            <ToolbarSpacer />
+                            <SearchField width="16rem" id="searchField">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData priority="Low" group="1"/>
+                                </layoutData>
+                            </SearchField>
+                            <ToolbarSpacer id="spacer">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData priority="Low" group="1"/>
+                                </layoutData>
+                            </ToolbarSpacer>
+                            <Button visible="false" icon="sap-icon://search" type="Transparent" id="searchButton" tooltip="Search"/>
+                            <OverflowToolbarButton icon="sap-icon://source-code" type="Transparent" tooltip="Action 1" text="Action 1" press="onMasterShow">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData group="2"/>
+                                </layoutData>
+                            </OverflowToolbarButton>
+                            <OverflowToolbarButton icon="sap-icon://cart" type="Transparent" tooltip="Cart" text="Cart" press=".onCart">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData group="2"/>
+                                </layoutData>
+                            </OverflowToolbarButton>
+                            <ToolbarSeparator>
+                                <layoutData>
+                                    <OverflowToolbarLayoutData group="2"/>
+                                </layoutData>
+                            </ToolbarSeparator>
+                            <OverflowToolbarButton icon="sap-icon://action-settings" type="Transparent" text="Settings"/>
+                            <Button icon="sap-icon://bell" type="Transparent" tooltip="Notification">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData priority="NeverOverflow"/>
+                                </layoutData>
+                            </Button>
+                            <tnt:ToolHeaderUtilitySeparator/>
+                            <ToolbarSpacer width="1.125rem"/>
+                            <Avatar src="data:image/jpeg;base64,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" displaySize="XS" press=".onAvatarPressed" tooltip="Profile">
+                                <layoutData>
+                                    <OverflowToolbarLayoutData priority="NeverOverflow"/>
+                                </layoutData>
+                                <dependents>
+                                    <core:Fragment fragmentName="idfood.swizoo.view.ActionSheet" type="XML" />
+                                </dependents>
+                            </Avatar>
+                        </tnt:ToolHeader>
+                    </headerContent>
+                    <!-- <IconTabBar expandable="false" id="ibar">
+
+                        <items>
+                            <IconTabFilter id="ifi" text="{CDetails>/0/Name1}" icon="sap-icon://customer">
+                                <f:SimpleForm editable="true" class="formbackgroundpassword" layout="ColumnLayout" title="Address">
+                                    <f:content>
+                                        <Label text="CustomerID" />
+                                        <Text text="{CDetails>/0/Kunnr}" />
+                                        <Label text="Name" />
+                                        <Text text="{CDetails>/0/Name1}" />
+                                        <Label text="Address" />
+                                        <Text text="{CDetails>/0/SmtpAddr}" />
+                                        <Label text="Mobile Number" />
+                                        <Text text="{CDetails>/0/Telf1}" />
+                                        <Label text="UserID" />
+                                        <Text text="{CDetails>/0/AppUsrid}" />
+                                        <Label text="Password" />
+                                        <Text text="{CDetails>/0/Password}" />
+                                    </f:content>
+                                </f:SimpleForm>
+                            </IconTabFilter>
+                            <IconTabFilter id="id1" text="{i18n>Name}" icon="sap-icon://customer">
+                                <Button text="onPressModeBtn" press="onPressModeBtn"></Button>
+                                <Button text="onPressModeBtn" press="onPressModeBtn"></Button>
+
+                            </IconTabFilter>
+                        </items>
+                    </IconTabBar> -->
+                </Page>
+                <Page id="Feedback" showNavButton="true" navButtonPress="onPressMasterBack" title=" Feedback deatails" />
+            </detailPages>
+            <masterPages >
                 <Page id="page1" class="sapUiSmallMargin" title="Your Account" showNavButton="true" navButtonPress="onNavBack">
+
+
                     <content>
                         <VBox alignItems="Center">
-                            <!-- <Image id="wow" width="100px" height="100px" class="imageProfile" /> -->
+
                         </VBox>
                         <VBox id="wow" class="imageProfile">
                             <VBox id="canvasContainer"></VBox>
@@ -62,7 +261,32 @@
                             <Button text="Address" icon="sap-icon://addresses" class="CDLink" />
                             <Button text="Logout" icon="sap-icon://log" class="CDLink" press="onLogOut" />
                         </VBox>
+                        <Button text="Toggle Collapse/Expand" icon="sap-icon://menu2" press=".onCollapseExpandPress" />
+                        <tnt:SideNavigation id="sideNavigation" selectedKey="subItem3">
+                            <tnt:NavigationList>
+                                <tnt:NavigationListItem text="Item 1" icon="sap-icon://employee">
+                                    <tnt:NavigationListItem text="Sub Item 1" />
+                                    <tnt:NavigationListItem text="Sub Item 2" />
+                                    <tnt:NavigationListItem text="Sub Item 3" id="subItem3" key="subItem3" />
+                                    <tnt:NavigationListItem text="Sub Item 4" />
+                                </tnt:NavigationListItem>
+                                <tnt:NavigationListItem text="Item 2" icon="sap-icon://building">
+                                    <tnt:NavigationListItem text="Sub Item 1" />
+                                    <tnt:NavigationListItem text="Sub Item 2" />
+                                    <tnt:NavigationListItem text="Sub Item 3" />
+                                    <tnt:NavigationListItem text="Sub Item 4" />
+                                </tnt:NavigationListItem>
+                            </tnt:NavigationList>
+                            <tnt:fixedItem>
+                                <tnt:NavigationList>
+                                    <tnt:NavigationListItem text="Item 1" icon="sap-icon://employee" />
+                                    <tnt:NavigationListItem text="Item 2" icon="sap-icon://building" />
+                                    <tnt:NavigationListItem text="Item 3" icon="sap-icon://card" />
+                                </tnt:NavigationList>
+                            </tnt:fixedItem>
+                        </tnt:SideNavigation>
                     </content>
+
                 </Page>
                 <Page id="idProfile" title="Profile" showNavButton="true" navButtonPress="onNavBack" visible="true">
                     <content>
@@ -80,6 +304,6 @@
                 </Page>
             </masterPages>
         </SplitContainer>
-        <!-- </ScrollContainer> -->
     </App>
+    <!-- </ScrollContainer> -->
 </mvc:View>

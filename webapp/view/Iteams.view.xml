@@ -1,0 +1,134 @@
+<mvc:View controllerName="idfood.swizoo.controller.Iteams"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+	xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc">
+	<ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="false" headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+
+				<expandedHeading>
+					<m:Title text="" wrapping="true" class="sapUiSmallMarginEnd"/>
+				</expandedHeading>
+
+				<snappedHeading>
+					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+						<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+							<f:Avatar src="{Data2>/image}" displaySize="XL" displayShape="Circle" class="sapUiTinyMarginEnd"/>
+							<m:Title text="" wrapping="true"/>
+						</m:FlexBox>
+					</m:FlexBox>
+				</snappedHeading>
+
+				<navigationActions>
+					<m:OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press="onFullScreen" id="enterFullScreenBtn" tooltip="Enter Full Screen Mode" visible="{= ${/actionButtonsInfo/endColumn/fullScreen} !== null }"/>
+					<m:OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen" press="handleExitFullScreen" id="exitFullScreenBtn" tooltip="Exit Full Screen Mode" />
+					<m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="handleClose" tooltip="Close end column" visible="{= ${/actionButtonsInfo/endColumn/closeColumn} !== null }"/>
+				</navigationActions>
+				<actions>
+					<m:ToggleButton text="Edit" type="Emphasized" press=".onEditToggleButtonPress"/>
+					<m:Button text="Name" type="Transparent" icon="sap-icon://person-placeholder" press=".onDelitePress"/>
+					<m:Button text="Cart" type="Transparent" icon="sap-icon://cart-4" press="onCart"/>
+					<!-- <m:Button text="Cart" icon="sap-icon://action" type="Transparent"/> -->
+				</actions>
+
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+		<headerContent>
+			<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+				<f:Avatar src="{Data2>/image}" displaySize="XL" displayShape="Square" class="sapUiTinyMarginEnd">
+				</f:Avatar>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="Name"/>
+					<!-- <m:Text text="{Data1>/results/1/Name}"/> -->
+					<m:Text text=""/>
+				</m:VBox>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="Gender"/>
+					<m:Text text=""/>
+				</m:VBox>
+				<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+					<m:Label text="City"/>
+					<m:ObjectNumber number="" emphasized="false"/>
+				</m:VBox>
+			</m:FlexBox>
+		</headerContent>
+		<sections>
+			<ObjectPageSection title="General Information">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<!-- <form:SimpleForm maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="12" labelSpanM="12" emptySpanL="0" emptySpanM="0" columnsL="1" columnsM="1">
+								<form:content>
+									<m:Label text="Name"/>
+									<m:Text text=""/>
+									<m:Label text="Role"/>
+									<m:Text text=""/>
+									<m:Label text="City"/>
+									<m:Text text=""/>
+								</form:content>
+							</form:SimpleForm> -->
+
+							<m:List id="idProductsTable1" items="{
+			                       path: 'FoodItem>/FoodItems'}">
+								<m:items>
+									<!-- <m:ObjectListItem icon="{FoodItem>Pizza}" intro="Italian Margherita Pizza" number="₹300" iconDensityAware="true" title="Fior di latte mozzarella, san marzano tomato sauce.." id="fff" press="onListPress" type="Navigation">
+									
+									 </m:ObjectListItem>
+									  -->
+									<m:CustomListItem type="Navigation" detailPress="" press="" id="" highlightText="">
+										<m:HBox >
+											<m:VBox>
+												<f:Avatar src="{FoodItem>Pizza}" displaySize="XL" displayShape="Square" class="sapUiTinyMarginEnd" press="handlePress">
+												</f:Avatar>
+												<m:Button id="idAdd" text="Add" press="onIteamAdd" />
+												<m:StepInput id="expirationInput" value="3" min="2" max="9" width="3rem" visible="false"/>
+											</m:VBox>
+											<m:Label text="Italian Margherita Pizza" />
+											<m:Label text="₹300"/>
+										</m:HBox>
+
+									</m:CustomListItem>
+								</m:items>
+							</m:List>
+
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection title="Suppliers">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<!-- <m:Table id="suppliersTable" items="{ path: 'FoodItem>/FoodItems'}">
+								<m:columns>
+									<m:Column/>
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem type="Navigation" press=".onSuppliers">
+										<m:cells>
+											<m:GenericTile backgroundImage="{Data2>/image}" press="onPress" header="" subheader="" />
+											<m:ObjectIdentifier text="{FoodItem>Pizza}"/>
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table> -->
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+		<footer >
+			<m:OverflowToolbar class="footer">
+				<m:ToolbarSpacer/>
+				<m:Button type="Accept" text="Save"/>
+				<m:Button type="Reject" text="Cancel"/>
+			</m:OverflowToolbar>
+		</footer>
+	</ObjectPageLayout>
+
+</mvc:View>
+ 

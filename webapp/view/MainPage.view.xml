@@ -1,442 +1,346 @@
-<mvc:View
-    controllerName="idfood.swizoo.controller.MainPage"
-    xmlns:mvc="sap.ui.core.mvc"
-    displayBlock="true"
+<mvc:View controllerName="idfood.swizoo.controller.MainPage"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:f="sap.ui.layout.form"
     xmlns:l="sap.ui.layout"
->
-    <Page
-        id="page"
-        class="MainPageee"
-        title="{i18n>title}"
-        showNavButton="true"
-        navButtonPress="onNavBack"
-        showHeader="true"
-    >
+    xmlns:main="sap.ui.webc.main">
+    <Page id="page" class="MainPageee" title="{i18n>title}" showNavButton="true" navButtonPress="onNavBack" showHeader="true">
         <headerContent >
-          <Button
-            icon="sap-icon://customer" class="findfoodBtn btnnn"
-                    width="7rem"
-                    press="oncustomer" visible="{=${Data2>/CustomerID} === 'V' }" 
-                />
-                  <Button
-            icon="sap-icon://customer" class="findfoodBtn btnnn"
-                    width="7rem"
-                    press="onCustomerDatails" visible="{=${Data2>/CustomerID} !== 'V' }" 
-                />
+            <Button icon="sap-icon://customer" class="findfoodBtn btnnn" width="7rem" press="oncustomer" visible="{=${Data2>/CustomerID} === 'V' }" />
+            <Button icon="sap-icon://customer" class="findfoodBtn btnnn" width="7rem" press="onCustomerDatails" visible="{=${Data2>/CustomerID} !== 'V' }" />
+            <OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press="onFullScreen" id="enterFullScreenBtn1" tooltip="Enter Full Screen Mode" />
         </headerContent>
         <content>
             <Toolbar>
-                <Label
-                    text="SWIZOO"
-                    class="swizoo"
-                />
-                <ComboBox
-                
-                    width="20rem"
-                    placeholder="Select Your Restaurant"
-                    visible="true"
-                    id="SelectYourRestaurant"
-                    items="{
-			            	path: 'Data1>/results',
-				            sorter: { path: 'Name1' } }"
-                >
-                    <core:Item
-                        id="idcoreitem"
-                        text="{Data1>Name1}"
-                    />
-                </ComboBox>
+                <Label text="SWIZOO" class="swizoo" />
+                <!-- <ComboBox width="20rem" placeholder="Select Your Restaurant" visible="true" id="SelectYourRestaurant" items="{
+			            	path: 'Data2>/results',
+				            sorter: { path: 'Name1' } }">
+                    <core:Item id="idcoreitem" text="{Data2>Name1}" />
+                </ComboBox> -->
+                <Input width="20%" id="productInput" placeholder="Add Your Address" showSuggestion="true" showValueHelp="true" valueHelpIconSrc="sap-icon://slim-arrow-down" valueHelpRequest=".onAddAddress" suggestionItems="{Data2>/results}">
+                    <SuggestionItem text="{Data2>Name1}" key="{AppView>key}"></SuggestionItem>
+                </Input>
 
-                <Button
-                    text="FIND FOOD"
-                   
-                    press="onFindFood"
-                />
+                <Button text="FIND FOOD" class="findfoodBtn" press="onFindFood" />
                 <ToolbarSpacer />
-                <SearchField
-                    liveChange="onSearch"
-                    width="30%"
-                />
-               
+                <SearchField liveChange="onSearch" placeholder="Search for restaurants and food" width="25%" />
+
             </Toolbar>
         </content>
         <content>
-         <Label text="" id="idresturantnam" class="sapMLabell name"></Label>
+            <Label text="" id="idresturantnam" class="sapMLabell name"></Label>
             <VBox alignItems="Center">
-                
-                <!-- <Image
-                    src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1002,h_600/v1678428358/portal/m/seo_web/dweb_header"
-                    class="sapMITBFilterIcon"
-                    width="70rem"
-                    height="20rem"
-                />
-            </VBox> -->
-             <Image
-                    src="https://restaurantindia.s3.ap-south-1.amazonaws.com/s3fs-public/content10523.jpg"
-                    class="sapMITBFilterIcon"
-                    width="70rem"
-                    height="20rem"
-                />
+                <Image src="{FoodItem>/FoodItems/2/Food}" class="sapMITBFilterIcon" width="70rem" height="20rem" />
             </VBox>
-            <HBox
-                alignItems="Center"
-                class="sapUiSmallMargin"
-            >
-                <Label
-                    text="Teja ,"
-                    id="id"
-                    class="labelWhatsonyourmind name"
-                />
-                <Label
-                    text="What's on your mind ?"
-                    id="idresturantname"
-                    class="labelWhatsonyourmind"
-                />
+            <HBox alignItems="Center" class="sapUiSmallMargin">
+                <Label text="Teja ," id="id" class="labelWhatsonyourmind name" />
+                <Label text="What's on your mind ?" id="idresturantname" class="labelWhatsonyourmind" />
             </HBox>
         </content>
         <content>
-            <FlexBox
-                justifyContent="Start"
-                alignItems="Start"
-                class="sidsa"
-                width="80%"
-            >
+            <FlexBox justifyContent="Start" alignItems="Start" class="sidsa" width="80%">
                 <VBox>
-                    <f:SimpleForm
-                        class="sapUiSmallMargin formbackgroundmyprofile"
-                        width="65rem"
-                    >
+                    <f:SimpleForm class="sapUiSmallMargin formbackgroundmyprofile" width="65rem">
                         <f:content>
-                            <!-- <ScrollContainer
-                            vertical="false"
-                            horizontal="true"
-                        >
+                            <!-- <ScrollContainer vertical="false" horizontal="true">
                             <HBox> -->
-                            <Carousel id="curdd"
-                                height="auto"
-                                width="100%"
-                                pages="2"
-                            >
+                            <Carousel id="curdd" height="auto" width="100%" loop="true">
                                 <customLayout>
-                                    <CarouselLayout visiblePagesCount="5" />
+                                    <CarouselLayout visiblePagesCount="5" class="slide-track"/>
                                 </customLayout>
-                                <GenericTile
-                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029856/PC_Creative%20refresh/3D_bau/banners_new/Pizza"
-                                    press="onpiza"
-                                    header=""
-                                    subheader=""
-                                />
-                                <GenericTile
-                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029845/PC_Creative%20refresh/3D_bau/banners_new/Burger"
-                                    press="onPlayStore"
-                                    header=""
-                                    subheader=""
-                                />
-                                <GenericTile
-                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029860/PC_Creative%20refresh/3D_bau/banners_new/Samosas"
-                                    width=""
-                                    press="onPlayStore"
-                                />
-                                <GenericTile
-                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029848/PC_Creative%20refresh/3D_bau/banners_new/Chinese"
-                                    width=""
-                                    press="onPlayStore"
-                                />
-                                <GenericTile
-                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029860/PC_Creative%20refresh/3D_bau/banners_new/Sandwich"
-                                    width=""
-                                    press="onPlayStore"
-                                />
-                                <GenericTile
-                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029858/PC_Creative%20refresh/3D_bau/banners_new/Rolls"
-                                    width=""
-                                    press="onPlayStore"
-                                />
-                                <GenericTile
-                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1675667630/PC_Creative%20refresh/Desserts_2"
-                                    width=""
-                                    press="onPlayStore"
-                                />
-                                <GenericTile
-                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029844/PC_Creative%20refresh/3D_bau/banners_new/Lassi"
-                                    width=""
-                                    press="onPlayStore"
-                                />
-                                <GenericTile
-                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029855/PC_Creative%20refresh/3D_bau/banners_new/Poori"
-                                    width=""
-                                    press="onPlayStore"
-                                />
-                                <GenericTile
-                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029844/PC_Creative%20refresh/3D_bau/banners_new/Lassi"
-                                    width=""
-                                    press="onPlayStore"
-                                />
-                                <GenericTile
-                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/rng/md/carousel/production/fb304a49f0f1632a219e004e9545774e"
-                                    width=""
-                                    press="onPlayStore"
-                                />
-                                <GenericTile
-                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1675667625/PC_Creative%20refresh/Biryani_2"
-                                    width=""
-                                    press="onPlayStore"
-                                />
-                                <GenericTile
-                                    backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029858/PC_Creative%20refresh/3D_bau/banners_new/Pure_Veg"
-                                    width=""
-                                    press="onPlayStore"
-                                />
+                                <GenericTile backgroundImage="{FoodItem>/FoodItems/0/Pizza}" press="onPress" header="" subheader="" />
+                                <GenericTile backgroundImage="{FoodItem>/FoodItems/0/Burger}" press="onPress" header="" subheader="" />
+                                <GenericTile backgroundImage="{FoodItem>/FoodItems/0/Samosas}" width="" press="onPress" />
+                                <GenericTile backgroundImage="{FoodItem>/FoodItems/0/Chinese}" width="" press="onPress" />
+                                <GenericTile backgroundImage="{FoodItem>/FoodItems/0/Sandwich}" width="" press="onPress" />
+                                <GenericTile backgroundImage="{FoodItem>/FoodItems/0/Rolls}" width="" press="onPress" />
+                                <GenericTile backgroundImage="{FoodItem>/FoodItems/0/Desserts_2}" width="" press="onPress" />
+                                <GenericTile backgroundImage="{FoodItem>/FoodItems/0/Lassi}" width="" press="onPress" />
+                                <GenericTile backgroundImage="{FoodItem>/FoodItems/0/Poori}" width="" press="onPress" />
+                                <GenericTile backgroundImage="{FoodItem>/FoodItems/0/Summer}" width="" press="onPress" />
+                                <GenericTile backgroundImage="{FoodItem>/FoodItems/0/Biryani}" width="" press="onPress" />
+                                <GenericTile backgroundImage="{FoodItem>/FoodItems/0/Pure_Veg}" width="" press="onPress" />
+                                <GenericTile backgroundImage="{FoodItem>/FoodItems/0/Chinese}" width="" press="onPress" />
                             </Carousel>
 
                             <!-- </HBox>
                         </ScrollContainer> -->
                         </f:content>
                     </f:SimpleForm>
-                    <Label
-                        text="Top restaurant chains in Gurgaon"
-                        class="labelWhatsonyourmind name"
-                    />
-                    <f:SimpleForm
-                        class="sapUiSmallMargin formbackgroundmyprofile"
-                        width="65rem"
-                    >
+                    <Label text="Top restaurant chains in Gurgaon" class="labelWhatsonyourmind name" />
+                    <f:SimpleForm class="sapUiSmallMargin formbackgroundmyprofile" width="65rem">
                         <f:content>
-                            <ScrollContainer
-                                vertical="false"
-                                horizontal="true"
-                            >
-                                <HBox>
+                            <ScrollContainer vertical="false" horizontal="true">
+                                <HBox class="slide-track">
                                     <VBox>
-                                        <GenericTile
-                                            backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/08eee882fda81b68e5c36e3a5d89d8c0"
-                                            press="onPlayStore"
-                                            header=""
-                                            frameType="TwoByOne"
-                                            subheader=""
-                                        >
-                                            <TileContent
-                                                footer="50% OFF UPTO ₹100"
-                                            >
-                                                <NewsContent
-                                                    contentText=""
-                                                    subheader=""
-                                                />
+                                        <GenericTile backgroundImage="{FoodItem>/FoodItems/1/Coke}" class="img" press="onPress" header="" frameType="TwoByOne" subheader="">
+                                            <TileContent footer="50% OFF UPTO ₹100">
+                                                <NewsContent contentText="" subheader="" />
                                             </TileContent>
                                         </GenericTile>
 
-                                        <Label
-                                            text="McDonald's"
-                                            class="name bJRtXU"
-                                        />
+                                        <Label text="McDonald's" class="name bJRtXU" />
 
                                         <HBox>
-                                            <Image
-                                                src="https://i.pinimg.com/236x/29/4d/5a/294d5a3b1d25e9709ceecfddacd88205.jpg"
-                                                width="25px"
-                                                class="star"
-                                            />
-                                            <!-- <Link icon="" id="c" /> -->
-                                            <!-- <Button text = "" type = "Transparent" icon="sap-icon://edit" /> -->
+                                           <RatingIndicator ass="star img" change=".onRatingChange"></RatingIndicator>
+                                          
 
-                                            <Label
-                                                text="4.1"
-                                                design="Bold"
-                                                class="ratingpoints"
-                                            />
+                                            <Label text="4.1" design="Bold" class="ratingpoints" />
                                         </HBox>
-                                        <Label
-                                            text="Burgers,Beverages,Cafe,Desserts"
-                                            design="Standard"
-                                            class="food "
-                                        />
-                                        <Label
-                                            text="GANDHINAGAR"
-                                            design="Bold"
-                                            class="street"
-                                        />
+                                        <Label text="Burgers,Beverages,Cafe,Desserts" design="Standard" class="food " />
+                                        <Label text="GANDHINAGAR" design="Bold" class="street" />
                                     </VBox>
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/0bf19a82b109b40c2f5c56d00f071a33"
-                                        press="onPlayStore"
-                                        header=""
-                                        frameType="TwoByOne"
-                                        subheader=""
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/obtyqt35sq55t0owwixq"
-                                        press="onPlayStore"
-                                        header=""
-                                        frameType="TwoByOne"
-                                        subheader=""
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/d461cb7eac503656a2b4bb13e7c60b97"
-                                        press="onPlayStore"
-                                        header=""
-                                        frameType="TwoByOne"
-                                        subheader=""
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/02731f6bd73f982bc74a522edd9c1b01"
-                                        press="onPlayStore"
-                                        header=""
-                                        frameType="TwoByOne"
-                                        subheader=""
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/dusrpnmq696kud6ri5p5"
-                                        press="onPlayStore"
-                                        header=""
-                                        frameType="TwoByOne"
-                                        subheader=""
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/ebvhlm5cwapzxrqs6nkd"
-                                        press="onPlayStore"
-                                        header=""
-                                        frameType="TwoByOne"
-                                        subheader=""
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/42110cd5216d1ebad900b13f5287bd9b"
-                                        press="onPlayStore"
-                                        header=""
-                                        frameType="TwoByOne"
-                                        subheader=""
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/2beebd3688e63e027ee8a11c1c8a72c8"
-                                        press="onPlayStore"
-                                        header=""
-                                        frameType="TwoByOne"
-                                        subheader=""
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/e33e1d3ba7d6b2bb0d45e1001b731fcf"
-                                        press="onPlayStore"
-                                        header=""
-                                        frameType="TwoByOne"
-                                        subheader=""
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/ji7etlhddnvtocaoes1n"
-                                        press="onPlayStore"
-                                        header=""
-                                        frameType="TwoByOne"
-                                        subheader=""
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/mxc0204gqh6vps9asyw1"
-                                        press="onPlayStore"
-                                        header=""
-                                        frameType="TwoByOne"
-                                        subheader=""
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/af8216b15abde417bb0e1d8fc44fb877"
-                                        press="onPlayStore"
-                                        header=""
-                                        frameType="TwoByOne"
-                                        subheader=""
-                                    />
+                                    <VBox >
+                                        <GenericTile backgroundImage="{FoodItem>/FoodItems/1/Burger}" class="img" press="onPress" header="" frameType="TwoByOne" subheader="">
+
+                                            <TileContent footer="50% OFF UPTO ₹100">
+                                                <NewsContent contentText="" subheader="" />
+                                            </TileContent>
+                                        </GenericTile>
+                                        <Label text="McDonald's" class="name bJRtXU" />
+
+                                        <HBox>
+                                           <RatingIndicator  class="star img" change=".onRatingChange"></RatingIndicator>
+                                          
+
+                                            <Label text="4.3" design="Bold" class="ratingpoints" />
+                                        </HBox>
+                                        <Label text="Burgers,Beverages,Cafe,Desserts" design="Standard" class="food " />
+                                        <Label text="GANDHINAGAR" design="Bold" class="street" />
+                                    </VBox>
+                                    <VBox >
+                                        <GenericTile backgroundImage="{FoodItem>/FoodItems/1/Roll}" class="img" press="onPress" header="" frameType="TwoByOne" subheader="">
+                                            <TileContent footer="50% OFF UPTO ₹100">
+                                                <NewsContent contentText="" subheader="" />
+                                            </TileContent>
+                                        </GenericTile>
+                                        <Label text="McDonald's" class="name bJRtXU" />
+
+                                        <HBox>
+                                           <RatingIndicator class="star img" change=".onRatingChange"></RatingIndicator>
+                                          
+
+                                            <Label text="4.0" design="Bold" class="ratingpoints" />
+                                        </HBox>
+                                        <Label text="Burgers,Beverages,Cafe,Desserts" design="Standard" class="food " />
+                                        <Label text="GANDHINAGAR" design="Bold" class="street" />
+                                    </VBox>
+                                    <VBox >
+                                        <GenericTile backgroundImage="{FoodItem>/FoodItems/1/Pizza}" class="img" press="onPress" header="" frameType="TwoByOne" subheader="">
+                                            <TileContent footer="50% OFF UPTO ₹100">
+                                                <NewsContent contentText="" subheader="" />
+                                            </TileContent>
+                                        </GenericTile>
+                                        <Label text="McDonald's" class="name bJRtXU" />
+
+                                        <HBox>
+                                            <!-- <Image src="{FoodItem>/FoodItems/1/Star}" width="25px" class="star img" /> -->
+                                          
+                                            <RatingIndicator ass="star img" change=".onRatingChange"></RatingIndicator>
+                                            <Label text="4.1" design="Bold" class="ratingpoints" />
+                                        </HBox>
+                                        <Label text="Burgers,Beverages,Cafe,Desserts" design="Standard" class="food " />
+                                        <Label text="GANDHINAGAR" design="Bold" class="street" />
+                                    </VBox>
+
+                                    <VBox>
+                                        <GenericTile backgroundImage="{FoodItem>/FoodItems/1/IceCream}" class="img" press="onPress" header="" frameType="TwoByOne" subheader="">
+                                            <TileContent footer="50% OFF UPTO ₹100">
+                                                <NewsContent contentText="" subheader="" />
+                                            </TileContent>
+                                        </GenericTile>
+                                        <Label text="McDonald's" class="name bJRtXU" />
+
+                                        <HBox>
+                                           <RatingIndicator ass="star img" change=".onRatingChange"></RatingIndicator>
+                                          
+
+                                            <Label text="3.9" design="Bold" class="ratingpoints" />
+                                        </HBox>
+                                        <Label text="Burgers,Beverages,Cafe,Desserts" design="Standard" class="food " />
+                                        <Label text="GANDHINAGAR" design="Bold" class="street" />
+                                    </VBox>
+                                    <VBox>
+                                        <GenericTile backgroundImage="{FoodItem>/FoodItems/1/Juice}" class="img" press="onPress" header="" frameType="TwoByOne" subheader="">
+                                            <TileContent footer="50% OFF UPTO ₹100">
+                                                <NewsContent contentText="" subheader="" />
+                                            </TileContent>
+                                        </GenericTile>
+                                        <Label text="McDonald's" class="name bJRtXU" />
+
+                                        <HBox>
+                                           <RatingIndicator ass="star img" change=".onRatingChange"></RatingIndicator>
+                                          
+
+                                            <Label text="4.5" design="Bold" class="ratingpoints" />
+                                        </HBox>
+                                        <Label text="Burgers,Beverages,Cafe,Desserts" design="Standard" class="food " />
+                                        <Label text="GANDHINAGAR" design="Bold" class="street" />
+                                    </VBox>
+                                    <VBox>
+                                        <GenericTile backgroundImage="{FoodItem>/FoodItems/1/Biryani}" class="img" press="onPress" header="" frameType="TwoByOne" subheader="">
+                                            <TileContent footer="50% OFF UPTO ₹100">
+                                                <NewsContent contentText="" subheader="" />
+                                            </TileContent>
+                                        </GenericTile>
+                                        <Label text="McDonald's" class="name bJRtXU" />
+
+                                        <HBox>
+                                           <RatingIndicator ass="star img" change=".onRatingChange"></RatingIndicator>
+                                          
+
+                                            <Label text="4.3" design="Bold" class="ratingpoints" />
+                                        </HBox>
+                                        <Label text="Burgers,Beverages,Cafe,Desserts" design="Standard" class="food " />
+                                        <Label text="GANDHINAGAR" design="Bold" class="street" />
+                                    </VBox>
+                                    <VBox>
+                                        <GenericTile backgroundImage="{FoodItem>/FoodItems/1/Mutton}" class="img" press="onPress" header="" frameType="TwoByOne" subheader="">
+                                            <TileContent footer="50% OFF UPTO ₹100">
+                                                <NewsContent contentText="" subheader="" />
+                                            </TileContent>
+                                        </GenericTile>
+                                        <Label text="McDonald's" class="name bJRtXU" />
+
+                                        <HBox>
+                                           <RatingIndicator ass="star img" change=".onRatingChange"></RatingIndicator>
+                                          
+
+                                            <Label text="4.5" design="Bold" class="ratingpoints" />
+                                        </HBox>
+                                        <Label text="Burgers,Beverages,Cafe,Desserts" design="Standard" class="food " />
+                                        <Label text="GANDHINAGAR" design="Bold" class="street" />
+                                    </VBox>
+                                    <VBox>
+                                        <GenericTile backgroundImage="{FoodItem>/FoodItems/1/Chicken}" class="img" press="onPress" header="" frameType="TwoByOne" subheader="">
+                                            <TileContent footer="50% OFF UPTO ₹100">
+                                                <NewsContent contentText="" subheader="" />
+                                            </TileContent>
+                                        </GenericTile>
+                                        <Label text="McDonald's" class="name bJRtXU" />
+
+                                        <HBox>
+                                           <RatingIndicator ass="star img" change=".onRatingChange"></RatingIndicator>
+                                          
+
+                                            <Label text="4.0" design="Bold" class="ratingpoints" />
+                                        </HBox>
+                                        <Label text="Burgers,Beverages,Cafe,Desserts" design="Standard" class="food " />
+                                        <Label text="GANDHINAGAR" design="Bold" class="street" />
+                                    </VBox>
+                                    <VBox>
+                                        <GenericTile backgroundImage="{FoodItem>/FoodItems/1/Chicken1}" class="img" press="onPress" header="" frameType="TwoByOne" subheader="">
+                                            <TileContent footer="50% OFF UPTO ₹100">
+                                                <NewsContent contentText="" subheader="" />
+                                            </TileContent>
+                                        </GenericTile>
+                                        <Label text="McDonald's" class="name bJRtXU" />
+
+                                        <HBox>
+                                           <RatingIndicator ass="star img" change=".onRatingChange"></RatingIndicator>
+                                          
+
+                                            <Label text="3.0" design="Bold" class="ratingpoints" />
+                                        </HBox>
+                                        <Label text="Burgers,Beverages,Cafe,Desserts" design="Standard" class="food " />
+                                        <Label text="GANDHINAGAR" design="Bold" class="street" />
+                                    </VBox>
+                                    <VBox>
+                                        <GenericTile backgroundImage="{FoodItem>/FoodItems/1/Chicken2}" class="img" press="onPress" header="" frameType="TwoByOne" subheader="">
+                                            <TileContent footer="50% OFF UPTO ₹100">
+                                                <NewsContent contentText="" subheader="" />
+                                            </TileContent>
+                                        </GenericTile>
+                                        <Label text="McDonald's" class="name bJRtXU" />
+
+                                        <HBox>
+                                           <RatingIndicator ass="star img" change=".onRatingChange"></RatingIndicator>
+                                          
+
+                                            <Label text="4.1" design="Bold" class="ratingpoints" />
+                                        </HBox>
+                                        <Label text="Burgers,Beverages,Cafe,Desserts" design="Standard" class="food " />
+                                        <Label text="GANDHINAGAR" design="Bold" class="street" />
+                                    </VBox>
+                                    <VBox>
+                                        <GenericTile backgroundImage="{FoodItem>/FoodItems/1/Chicken3}" class="img" press="onPress" header="" frameType="TwoByOne" subheader="">
+                                            <TileContent footer="50% OFF UPTO ₹100">
+                                                <NewsContent contentText="" subheader="" />
+                                            </TileContent>
+                                        </GenericTile>
+                                        <Label text="McDonald's" class="name bJRtXU" />
+
+                                        <HBox>
+                                           <RatingIndicator ass="star img" change=".onRatingChange"></RatingIndicator>
+                                          
+
+                                            <Label text="4.3" design="Bold" class="ratingpoints" />
+                                        </HBox>
+                                        <Label text="Burgers,Beverages,Cafe,Desserts" design="Standard" class="food " />
+                                        <Label text="GANDHINAGAR" design="Bold" class="street" />
+                                    </VBox>
+                                    <VBox>
+                                        <GenericTile backgroundImage="{FoodItem>/FoodItems/1/Chicken4}" class="img" press="onPress" header="" frameType="TwoByOne" subheader="">
+                                            <TileContent footer="50% OFF UPTO ₹100">
+                                                <NewsContent contentText="" subheader="" />
+                                            </TileContent>
+                                        </GenericTile>
+                                        <Label text="McDonald's" class="name bJRtXU" />
+
+                                        <HBox>
+                                           <RatingIndicator ass="star img" change=".onRatingChange"></RatingIndicator>
+                                          
+
+                                            <Label text="3.8" design="Bold" class="ratingpoints" />
+                                        </HBox>
+                                        <Label text="Burgers,Beverages,Cafe,Desserts" design="Standard" class="food " />
+                                        <Label text="GANDHINAGAR" design="Bold" class="street" />
+                                    </VBox>
+                                    <!-- <GenericTile backgroundImage="{FoodItem>/FoodItems/1/IceCream}" class="img" press="onPress" header="" frameType="TwoByOne" subheader="" /> -->
                                 </HBox>
                             </ScrollContainer>
                         </f:content>
                     </f:SimpleForm>
-                    <Label
-                        text="Restaurants with online food delivery in Gurgaon"
-                        class="labelWhatsonyourmind name"
-                    />
+                    <Label text="Restaurants with online food delivery in Gurgaon" class="labelWhatsonyourmind name" />
 
-                    <f:SimpleForm
-                        class="sapUiSmallMargin formbackgroundmyprofile"
-                        width="65rem" 
-                    >
+                    <f:SimpleForm class="sapUiSmallMargin formbackgroundmyprofile" width="65rem">
                         <f:content>
-                           <HBox >
-                           <Button id="filter" text="Filter" icon="sap-icon://customize"  press="onMainPageFilters"/>
-                           <Button id="Sort" text="Sort By" icon="sap-icon://sort" class="sortBtn" press="onsort"/>
-                           <Button id="Sort1" text="Fast Delivery " class="sortBtn"/>
-                           <Button id="rating" text="Ratings 4.0+" class="sortBtn"/>
-                           <Button id="pureveg" text="Pure Veg" class="sortBtn"/>
-                            <Button id="Offers" text="Offers" class="sortBtn"/>
-                             <Button id="300to600" text="Rs.300 - Rs.600" class="sortBtn"/>
-                              <Button id="L300" text="Less than Rs.300" class="sortBtn"/>
-                           </HBox>
+                            <HBox >
+                                <Button id="filter" text="Filter" icon="sap-icon://customize" press="onMainPageFilters"/>
+                                <Button id="Sort" text="Sort By" icon="sap-icon://sort" class="sortBtn" press="onsort"/>
+                                <Button id="Sort1" text="Fast Delivery " class="sortBtn"/>
+                                <Button id="rating1" text="Ratings 4.0+" class="sortBtn"/>
+                                <Button id="pureveg" text="Pure Veg" class="sortBtn"/>
+                                <Button id="Offers" text="Offers" class="sortBtn"/>
+                                <Button id="300to600" text="Rs.300 - Rs.600" class="sortBtn"/>
+                                <Button id="L300" text="Less than Rs.300" class="sortBtn"/>
+                            </HBox>
                         </f:content>
                     </f:SimpleForm>
 
-                    <f:SimpleForm
-                        class="sapUiSmallMargin formbackgroundmyprofile"
-                        width="65rem"
-                    >
+                    <f:SimpleForm class="sapUiSmallMargin formbackgroundmyprofile" width="65rem">
                         <f:content>
-                            <ScrollContainer
-                                vertical="false"
-                                horizontal="true"
-                            >
-                                <HBox>
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029856/PC_Creative%20refresh/3D_bau/banners_new/Pizza"
-                                        press="onPlayStore"
-                                        header=""
-                                        subheader=""
-                                        class="zoom"
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029845/PC_Creative%20refresh/3D_bau/banners_new/Burger"
-                                        press="onPlayStore"
-                                        header=""
-                                        subheader=""
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029860/PC_Creative%20refresh/3D_bau/banners_new/Samosas"
-                                        width=""
-                                        press="onPlayStore"
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029848/PC_Creative%20refresh/3D_bau/banners_new/Chinese"
-                                        width=""
-                                        press="onPlayStore"
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029860/PC_Creative%20refresh/3D_bau/banners_new/Sandwich"
-                                        width=""
-                                        press="onPlayStore"
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029858/PC_Creative%20refresh/3D_bau/banners_new/Rolls"
-                                        width=""
-                                        press="onPlayStore"
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1675667630/PC_Creative%20refresh/Desserts_2"
-                                        width=""
-                                        press="onPlayStore"
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029844/PC_Creative%20refresh/3D_bau/banners_new/Lassi"
-                                        width=""
-                                        press="onPlayStore"
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029855/PC_Creative%20refresh/3D_bau/banners_new/Poori"
-                                        width=""
-                                        press="onPlayStore"
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029844/PC_Creative%20refresh/3D_bau/banners_new/Lassi"
-                                        width=""
-                                        press="onPlayStore"
-                                    />
-                                    <GenericTile
-                                        backgroundImage="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/rng/md/carousel/production/fb304a49f0f1632a219e004e9545774e"
-                                        width=""
-                                        press="onPlayStore"
-                                    />
+                            <ScrollContainer vertical="false" horizontal="true">
+                                <HBox class="slide-track">
+                                    <GenericTile class="img" backgroundImage="{FoodItem>/FoodItems/0/Pizza}" press="onpiza" header="" subheader="" />
+                                    <GenericTile class="img" backgroundImage="{FoodItem>/FoodItems/0/Burger}" press="onPress" header="" subheader="" />
+                                    <GenericTile class="img" backgroundImage="{FoodItem>/FoodItems/0/Samosas}" width="" press="onPress" />
+                                    <GenericTile class="img" backgroundImage="{FoodItem>/FoodItems/0/Chinese}" width="" press="onPress" />
+                                    <GenericTile class="img" backgroundImage="{FoodItem>/FoodItems/0/Sandwich}" width="" press="onPress" />
+                                    <GenericTile class="img" backgroundImage="{FoodItem>/FoodItems/0/Rolls}" width="" press="onPress" />
+                                    <GenericTile class="img" backgroundImage="{FoodItem>/FoodItems/0/Desserts_2}" width="" press="onPress" />
+                                    <GenericTile class="img" backgroundImage="{FoodItem>/FoodItems/0/Lassi}" width="" press="onPress" />
+                                    <GenericTile class="img" backgroundImage="{FoodItem>/FoodItems/0/Poori}" width="" press="onPress" />
+                                    <GenericTile class="img" backgroundImage="{FoodItem>/FoodItems/0/Summer}" width="" press="onPress" />
+                                    <GenericTile class="img" backgroundImage="{FoodItem>/FoodItems/0/Biryani}" width="" press="onPress" />
+                                    <GenericTile class="img" backgroundImage="{FoodItem>/FoodItems/0/Pure_Veg}" width="" press="onPress" />
+                                    <GenericTile class="img" backgroundImage="{FoodItem>/FoodItems/0/Chinese}" width="" press="onPress" />
+                                    <GenericTile class="img" backgroundImage="{FoodItem>/FoodItems/0/Sandwich}" width="" press="onPress" />
+                                    <GenericTile class="img" backgroundImage="{FoodItem>/FoodItems/0/Rolls}" width="" press="onPress" />
+                                    <GenericTile class="img" backgroundImage="{FoodItem>/FoodItems/0/Desserts_2}" width="" press="onPress" />
+                                    <GenericTile class="img" backgroundImage="{FoodItem>/FoodItems/0/Lassi}" width="" press="onPress" />
                                 </HBox>
                             </ScrollContainer>
                         </f:content>
@@ -444,28 +348,6 @@
                 </VBox>
             </FlexBox>
         </content>
-        <!-- <content> -->
-        <!-- <FlexBox
-                justifyContent="Start"
-                alignItems="Start"
-                class="sidsa"
-                width="80%"
-            >
-                <f:SimpleForm
-                    class="sapUiSmallMargin formbackgroundmyprofile"
-                    width="65rem"
-                >
-                    <f:content>
-                        <Label
-                            text="Restaurants with online food delivery in Bangalore  "
-                        />
-                    </f:content>
-                </f:SimpleForm>
-            </FlexBox> -->
-        <!-- <Label
-                            text="Restaurants with online food delivery in Bangalore  "
-                        />
-        </content> -->
-        <!-- <Label text="" id="idresturantname" class="sapMLabell"></Label> -->
+
     </Page>
 </mvc:View>

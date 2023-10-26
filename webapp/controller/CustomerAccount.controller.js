@@ -1,18 +1,21 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller", "sap/m/MessageBox", "sap/m/MessageToast",
-    "sap/m/Dialog", "sap/m/library",
+    "./BaseController",
+    "sap/m/MessageBox",
+    "sap/m/MessageToast",
+    "sap/m/Dialog",
+    "sap/base/Log"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, MessageBox, MessageToast, Dialog, library) {
+    function (BaseController, MessageBox, MessageToast, Dialog,Log) {
         "use strict";
         // var DialogType = mobileLibrary.DialogType;
-        return Controller.extend("idfood.swizoo.controller.CustomerAccount", {
+        return BaseController.extend("idfood.swizoo.controller.CustomerAccount", {
             onInit: function () {
-
-                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                oRouter.getRoute("CustomerAccount").attachPatternMatched(this.onRouteMatch, this);
+                
+               
+                this._getRouter().getRoute("CustomerAccount").attachPatternMatched(this.onRouteMatch, this);
             },
             onRouteMatch: function (evt) {
                 var that = this;
@@ -41,9 +44,9 @@ sap.ui.define([
                         that.customer(CData, CustomerID, Password);
                         // MessageBox.success("Success");
                     },
-                    error: function (oError) {
+                    error: function (error) {
                         sap.ui.core.BusyIndicator.hide();
-                        var message = error;
+                       
                         var msg = $(error.response.body).find('message').first().text();
                         var action = "OK";
                         new sap.m.MessageBox.error(msg, {
@@ -56,7 +59,8 @@ sap.ui.define([
                         });
                     }
                 })
-
+                this.onMasterHide();
+                this.getView().byId("idMenu2").setVisible(false);
             },
             customer: function (CData, CustomerID, Password) {
                 var CData = CData;
@@ -194,14 +198,33 @@ sap.ui.define([
                 // var sPerdmm = this.getView().getModel("i18n").getResourceBundle().getText(">Name");
                 // var sPerdmm = this.getView().getModel("i18n").getResourceBundle().aPropertyFiles[0].mProperties.Name;
                 // var name = this.getView().getModel("i18n").getResourceBundle().aPropertyFiles[0].mProperties.setName("Teja");
-          
-          
-            },
-            onLogOut:function(){
-                var loRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                loRouter.navTo("LoginPage", { flag: "C" });
-            }
-            // location.reload(true);
 
+
+            },
+          
+            // location.reload(true);
+            onCollapseExpandPress: function () {
+                var oSideNavigation = this.byId("sideNavigation");
+                var bExpanded = oSideNavigation.getExpanded();
+
+                oSideNavigation.setExpanded(!bExpanded);
+            },
+          
+
+
+            onMasterHide: function (oEvent) {
+                this.getSplitContObj().setMode("HideMode");
+                this.getView().byId("idMenu2").setVisible(false);
+            },
+            onMasterShow: function (oEvent) {
+                
+                this.getSplitContObj().setMode("ShowHideMode");
+                this.getView().byId("idMenu2").setVisible(true);
+            },
+           
+            onCart:function(){
+                this._getRouter().navTo("HomeCart");
+            },
+            
         });
     });

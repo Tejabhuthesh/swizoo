@@ -2,14 +2,13 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
-    xmlns:f="sap.ui.layout.form"
+    xmlns:form="sap.ui.layout.form"
     xmlns:l="sap.ui.layout">
-    <!-- <App>
-<pages>
-<ScrollContainer > -->
+
 
     <Page id="page" title="{i18n>title}" showNavButton="true" navButtonPress="onNavBack" showHeader="true">
         <headerContent>
+            <Label text="{=${Data2>/results}.length}"></Label>
             <Link text="Login" id="homelogin" press="onHomeLogin" class="loginLnkoo" />
             <Button text="Sign Up" id="homeSign" class="signup" press="onHomesign" />
         </headerContent>
@@ -17,12 +16,20 @@
             <Toolbar>
                 <Label text="SWIZOO" class="swizoo" />
                 <ComboBox width="20rem" placeholder="Select Your Restaurant" visible="true" id="SelectYourRestaurant" items="{
-			            	path: 'Data1>/results',
+			            	path: 'Data2>/results',
 				            sorter: { path: 'Name1' } }">
-                    <core:Item id="idcoreitem" text="{Data1>Name1}" />
+                    <core:Item id="idcoreitem" text="{Data2>Name1}" />
                 </ComboBox>
+                <!-- <MultiComboBox id="SelectYourRestaurant" width="20rem" editable="true" items="{
+          path: 'Data2>/results', sorter: { path: 'Name1',
+                                                              group: false } 
+            }">
 
-                <Button text="FIND FOOD" width="7rem" press="onFindFood" />
+                    <core:Item id="idcoreitem" text="{Data2>Name1}" />
+
+                </MultiComboBox> -->
+
+                <Button text="FIND FOOD" width="7rem" press="onFindFood" class="findfoodBtn"/>
                 <ToolbarSpacer />
                 <SearchField liveChange="onSearch" width="30%" />
             </Toolbar>
@@ -36,19 +43,12 @@
                 <Image src="https://replicate.delivery/pbxt/1GpfOc92orSexkfle6fX7C6tqO0tPOPrSVOEPqtrwuoLtFHIC/out.png" class="sapMITBFilterIcon" width="80rem" height="50rem"/>
 
                 <GenericTile backgroundImage="https://replicate.delivery/pbxt/75DeXYFm9I1pBaX5OTQlFPowC0lJ0DSV84xkMhC6ObZdMdgIA/out.png" press="onPlayStore" frameType="TwoByHalf">
-                    <!-- <TileContent>
-                            <ImageContent src="https://www.freepnglogos.com/uploads/play-store-logo-png/play-store-logo-nisi-filters-australia-11.png" />
-                        </TileContent>-->
+
                 </GenericTile>
             </VBox>
 
-
         </content>
+       
     </Page>
-    <!-- <Page id="page1" title="Ram">
-        
-        </Page>
-        </ScrollContainer>
-    </pages>
-</App> -->
+
 </mvc:View>
